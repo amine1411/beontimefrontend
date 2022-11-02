@@ -1,9 +1,8 @@
 import React from "react";
 import styles from "../styles/cardMission.module.css";
-import { Progress } from "@chakra-ui/react";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
-import { addMissionToJourney } from "../reducers/mission";
+import { TimeIcon } from "@chakra-ui/icons";
+import { Progress, IconButton } from "@chakra-ui/react";
 
 // Styled Component
 const Carte = styled.div`
@@ -71,9 +70,7 @@ const BarProgress = styled.div`
 `;
 
 function CardMissionDashboard(mission) {
-  //Redux
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
+  
   // Variable : changement de couleur en fonction des jours restants pour réaliser la mission
   const nbDeJour = [];
   let EcheanceBackground;
@@ -97,27 +94,17 @@ function CardMissionDashboard(mission) {
     EcheanceBorder = "#1aae9f";
   }
 
-  //  const handleBookmarkClick = () => {
-  //    if (!user.token) {
-  //      return;
-  //    }
-
-  //    fetch(`http://localhost:3000/missions/collab/${user.username}`)
-  //      .then((response) => response.json())
-  //      .then((data) => {
-  //        if (data.result && data.isDaily) {
-  //         console.log(handleBookmarkClick, "OOOOOOOOOOOOOOOOOOOOO");
-  //          dispatch(addMissionToJourney(props));
-  //        }
-  //      });
-  //  };
-
   //JSX
-  console.log(mission, "MMMM")
+  // console.log(mission, "MMMM")
   return (
     <Carte>
-      <div>Sablier</div>
       <IdCollab className="idCollab">{mission.idCollab}</IdCollab>
+      <IconButton
+        size="lg"
+        colorScheme="green"
+        variant="ghost"
+        icon={<TimeIcon />}
+      />
       <FirstDiv>
         <Libelle className="libellé">{mission.libelle}</Libelle>
         <Echeance background={EcheanceBackground} border={EcheanceBorder}>

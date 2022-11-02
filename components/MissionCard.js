@@ -43,23 +43,6 @@ function Mission(props) {
           icon={<DeleteIcon />}
           onDoubleClick={() => handleDeleteMission()}
         />
-
-        {/* <Button
-          colorScheme="teal"
-          variant="outline"
-          size="sm"
-          onClick={() => handleModifyMission()}
-        >
-          Modifier
-        </Button>
-        <Button
-          colorScheme="teal"
-          variant="outline"
-          size="sm"
-          onClick={() => handleDeleteMission()}
-        >
-          Supprimer
-        </Button>   */}
       </HStack>
     </Box>
   );

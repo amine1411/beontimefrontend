@@ -1,17 +1,14 @@
 // Librairies
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/MesMissions.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { Input } from '@chakra-ui/react';
 // Component
 import CardMission from '../components/CardMission';
-import { addMissionToJourney } from '../reducers/mission';
 
 function MesMissions(props) {
   //redux
   const user = useSelector((state) => state.user.value);
   // console.log(user.username, "USERS");
-  const dispatch = useDispatch();
   const missionReduce = useSelector((state) => state.mission);
   // State
   const [DisplayedData, setDisplayedData] = useState([]);
@@ -32,15 +29,6 @@ function MesMissions(props) {
         const createdMissions = { ...data.missions };
       });
   }, []);
-
-  // const handleaddMissionToJourney = () => {
-  //   fetch(`http://localhost:3000/missions/collab/${user.username}`)
-  //     .then((response) => response.json())
-  //     .then((data) => {
-  //       console.log(data.missions, "Dispatched");
-  //       dispatch(addMissionToJourney(props));
-  //     });
-  // };
 
   //Je filtre les missions en fonction de la valeur de mon input, si l'input est vide (!value), je lui donne la valeur
   //de mon state avec les missions au complet

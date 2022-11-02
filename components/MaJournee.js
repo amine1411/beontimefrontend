@@ -1,16 +1,11 @@
 // Librairies
 import React, { useState, useEffect } from 'react';
-import styles from '../styles/MesMissions.module.css';
 import { useDispatch, useSelector } from 'react-redux';
 
 // Component
 import CardMissionDaily from '../components/CardMissionDaily';
-import {
-  addMissionToJourney,
-  loadMissionsJourney,
-} from '../reducers/mission';
 
-function MaJournee(mission) {
+function MaJournee() {
   // Redux
   const dispatch = useDispatch();
   const missionReduce = useSelector((state) => state.mission.value);
@@ -18,10 +13,8 @@ function MaJournee(mission) {
   //  console.log(missionReduce, "reducer")
 
   // State
-
   const [MissionsData, setMissionsData] = useState([]);
-  const [DailyMissions, setDailyMissions] = useState([]);
-  // console.log(DailyMissions, "Daylymissions");
+
   // UseEffects
   useEffect(() => {
     fetch('http://localhost:3000/missions/all')
@@ -35,14 +28,6 @@ function MaJournee(mission) {
         // console.log(createdMissions, "Created");
       });
   }, []);
-
-  //Fonction pour récupérer l'échéance en jour, en fonction de la date du jour (DayDate) et la date d'échéance dans la BDD.
-
-  const DayDate = new Date();
-
-  function datediff(first, second) {
-    return Math.round((second - first) / (1000 * 60 * 60 * 24));
-  }
 
   //Trie des missions en fonction de l'échéance
 
@@ -61,28 +46,8 @@ function MaJournee(mission) {
     fontSize: '30px',
   };
 
-  //   function removeDuplicates(originalArray, prop) {
-  //     var newArray = [];
-  //     var lookupObject = {};
-
-  //     for (var i in originalArray) {
-  //       lookupObject[originalArray[i][prop]] = originalArray[i];
-  //     }
-
-  //     for (i in lookupObject) {
-  //       newArray.push(lookupObject[i]);
-  //     }
-  //     return newArray;
-  //   }
-
-  //   var uniqueArray = removeDuplicates(missionReduce, "licenseNum");
-  //   console.log("uniqueArray is: " + JSON.stringify(uniqueArray));
-
-  // const missionsNotDuplicate = removeDuplicates(missions, "libelle")
-  // console.log(missionsNotDuplicate, "NOT DUPLICATE")
-
-  let missions = [];
   // Map sur les missions
+  let missions = [];
   if (missions) {
     // console.log(mission.echeance);
     missions = missionReduce.map((mission, index) => {

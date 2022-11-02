@@ -1,11 +1,10 @@
 import React from "react";
 import styles from "../styles/cardMission.module.css";
-import { Progress, IconButton, HStack } from "@chakra-ui/react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { removeMission } from "../reducers/mission";
-import Modal from 'react-modal';
 import { ViewOffIcon, TimeIcon } from "@chakra-ui/icons";
+import { Progress, IconButton } from "@chakra-ui/react";
 
 
 // Styled Component
@@ -70,12 +69,8 @@ const BarProgress = styled.div`
 `;
 
 function CardMissionDaily(mission) {
-  const handleDeleteMission = () => {
-   handleDeleteMission();
-  };
   //Redux
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
   // Variable : changement de couleur en fonction des jours restants pour réaliser la mission
   const nbDeJour = [];
   let EcheanceBackground;
@@ -99,27 +94,12 @@ function CardMissionDaily(mission) {
     EcheanceBorder = "#1aae9f";
   }
 
-  //  const handleBookmarkClick = () => {
-  //    if (!user.token) {
-  //      return;
-  //    }
-
-  //    fetch(`http://localhost:3000/missions/collab/${user.username}`)
-  //      .then((response) => response.json())
-  //      .then((data) => {
-  //        if (data.result && data.isDaily) {
-  //         console.log(handleBookmarkClick, "OOOOOOOOOOOOOOOOOOOOO");
-  //          dispatch(addMissionToJourney(props));
-  //        }
-  //      });
-  //  };
-
   //JSX
   return (
     <Carte>
       <IconButton
         size="lg"
-        colorScheme="teal"
+        colorScheme="green"
         variant="ghost"
         icon={<ViewOffIcon />}
         onClick={() => dispatch(removeMission(mission))}

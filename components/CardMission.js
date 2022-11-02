@@ -93,20 +93,6 @@ function CardMission(mission) {
     EcheanceBorder = '#1aae9f';
   }
 
-  //  const handleBookmarkClick = () => {
-  //    if (!user.token) {
-  //      return;
-  //    }
-
-  //    fetch(`http://localhost:3000/missions/collab/${user.username}`)
-  //      .then((response) => response.json())
-  //      .then((data) => {
-  //        if (data.result && data.isDaily) {
-  //         console.log(handleBookmarkClick, "OOOOOOOOOOOOOOOOOOOOO");
-  //          dispatch(addMissionToJourney(props));
-  //        }
-  //      });
-  //  };
 
   //JSX
   return (
