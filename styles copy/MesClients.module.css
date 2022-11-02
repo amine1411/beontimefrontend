@@ -1,0 +1,57 @@
+.bigcard{
+    padding: 4rem;
+    display: flex;
+    flex-direction: column;
+    color: blue;
+    background-color: white;
+    height: 100vh;
+    width: 72vw;
+    overflow: scroll;
+  }
+  
+  .cardscontainer {
+    display: flex;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      align-content: center;
+  
+  }
+  
+  .search {
+    height: 2vh;
+    outline: none;
+    width: 50%;
+    border: 1px solid grey;
+    font-size: 1rem;
+    padding: 1rem;
+    border-radius: .5rem;
+    color: black;
+
+  }
+
+.add {
+  margin-top: 3%;
+  outline: none;
+  width: 18%;
+  border: 1px solid grey;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: .5rem;
+  background-color: #172d43;;
+  height: 15vh;
+  color:white;
+  cursor: pointer;
+  text-align: center;
+}
+
+
+.titre{
+  font-weight: bold;
+  margin-bottom: 2%;
+  color: #172d43;
+  font-size: 30px;
+}
+

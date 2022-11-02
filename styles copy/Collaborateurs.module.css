@@ -1,0 +1,154 @@
+.container {
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+}
+
+/*MidleContent begins */
+
+.midleContainer {
+    height: 100vh;
+    width: 72vw;
+    background-color: grey;
+}
+
+/*MidleContent ends */
+
+/*RightContent begins */
+
+.rightSection {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 12vw;
+    padding: 0vh 0vh 0vh 1vh;
+    background-color: pink;
+}
+
+.inputReminder {
+    height: 7vh;
+}
+
+/*RightContent ends */
+
+
+/*LeftSection begins */
+
+.logo {
+    cursor: pointer;
+}
+
+.leftSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+    width: 16vw;
+    background-color: #172d43;
+}
+
+.navigateContainer {
+    padding-top: 4vh;
+}
+
+
+
+.navigationButton {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 12vh;
+    width: 30.2vh;
+    border: 2px #232f3b solid;
+    border-radius: 1vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 350;
+    cursor: pointer;
+    margin-top: 1vh;
+    background-color: #172d43;
+    color: rgb(125, 124, 124);
+    padding-top: 2vh;
+    margin-left: 2vh;
+    margin-right: 1vh;
+}
+
+.navigationButtonStatic {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 12vh;
+    width: 32vh;
+    border: 2px #232f3b solid;
+    border-radius: 1vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 350;
+    cursor: pointer;
+    margin-top: 1vh;
+    background-color: #077aa3;
+    color: rgb(125, 124, 124);
+    padding-top: 2vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.navigation {
+    font-size: 1.2rem;
+}
+
+.navigationButton:hover {
+    background-color: #077aa3;
+    color: red;
+    transform: scale(1.07);
+}
+
+.buttonContainer {
+    padding-right: 100px;
+}
+
+.popover {
+    background-color: green;
+    border: 2px white solid;
+    border-radius: 10px;
+    color: black
+}
+
+.popoverContent {
+    display: flex;
+    margin-top: 1vh;
+}
+
+.popoverBtn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 12vh;
+    width: 31vh;
+    border: 2px #232f3b solid;
+    border-radius: 1vh;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 350;
+    cursor: pointer;
+    margin-top: 1vh;
+    background-color: #172d43;
+    color: rgb(161, 18, 18);
+    padding-top: 2vh;
+    margin-left: 1vh;
+    margin-right: 1vh;
+}
+
+.popoverBtn:hover {
+    background-color: #077aa3;
+    color: #F2A643;
+    border: none;
+}
+
+.logo {
+    display: flex;
+    justify-content: center;
+}
+
+/*LeftSection ends */

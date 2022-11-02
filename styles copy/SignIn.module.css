@@ -1,0 +1,59 @@
+/* @font-face {
+  font-family: 'Mont';
+  src: url('/fonts/Mont-Heavy.otf');
+} */
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(4, 49, 95);
+  padding: 20px;
+}
+
+.title {
+  font-family: 'Mont';
+  font-size: 22px;
+  margin: 20px;
+  margin-bottom: 30px;
+}
+
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+  width: 200px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: white;
+  color: rgb(10, 93, 208);
+  border-radius: 40px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+}
+
+.button:hover {
+  background-color: rgb(8, 41, 80);
+  color: white;
+  border: 2px white solid;
+}
+
+.input {
+  height: 40px;
+  width: 200px;
+  margin-bottom: 20px;
+  border: 1px white solid;
+  color: white;
+  border-radius: 2px;
+  background-color: transparent;
+  font-weight: 600;
+  padding: 10px;
+}
+
+.input:focus {
+  outline: none;
+  background-color: transparent;
+}

@@ -1,0 +1,54 @@
+.bigcard {
+  margin-top: 2vh;
+  margin-left: 3vh;
+  margin-right: 3vh;
+  display: flex;
+  flex-direction: column;
+  color: blue;
+  background-color: white;
+  max-height: 100vh;
+  overflow: scroll;
+}
+
+.cardscontainer {
+  display: flex;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+}
+
+/* .search {
+  height: 2vh;
+  outline: none;
+  width: 50%;
+  border: 1px solid grey;
+  font-size: 1rem;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  color: black;
+} */
+
+.add {
+  margin-top: 3%;
+  outline: none;
+  width: 18%;
+  border: 1px solid grey;
+  /* font-size: 1rem; */
+  padding: 1rem;
+  border-radius: 0.5rem;
+  background-color: #172d43;
+  /* height: 15vh; */
+  color: white;
+  cursor: pointer;
+  text-align: center;
+}
+
+.titre {
+  font-weight: bold;
+  margin-bottom: 2%;
+  color: #172d43;
+  font-size: 30px;
+}

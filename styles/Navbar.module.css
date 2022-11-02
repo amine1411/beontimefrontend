@@ -1,0 +1,18 @@
+.navbar {
+  min-width: 15vw;
+  min-height: 100vh;
+  background-color: rgb(7, 40, 89);
+}
+
+.links {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: x-large;
+  margin-left: 2vw;
+  margin-right: 2vw;
+}
+
+.links a {
+  margin-left: 20px;
+}

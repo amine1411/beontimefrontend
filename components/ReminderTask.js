@@ -1,0 +1,110 @@
+// Librairies
+import React, { useState } from 'react';
+import {
+  Heading,
+  VStack,
+  HStack,
+  Button,
+  Input,
+} from '@chakra-ui/react';
+
+// Component
+import Task from './Task';
+
+function ReminderTask() {
+  // States
+  const [tasks, setTasks] = useState([]);
+
+  const [input, setInput] = useState('');
+
+  // Fonctions - méthodes
+  // Permet de gérer la suppression d'une taches
+  const removeClickedHandler = (index) => {
+    // console.log(index);
+    const newTasks = [...tasks]; // permet de retirer une tache et de laisser toutes les autres
+    newTasks.splice(index, 1); // permet, à l'index de notre choix, de retirer un élément
+    setTasks(newTasks); // mise à jour du state
+  };
+
+  // Permet de gérer si une tache a été effectuée
+  const doneClickedHandler = (index) => {
+    const newTasks = [...tasks];
+    newTasks[index].done = !tasks[index].done;
+    // Dans mes nouvelles tache, à l'index qui a été cliqué, on va passer la propriété done qui est = à notre state(tasks),
+    //la tache qui a été cliquée puis done (qui va renvoyer false ou true) et on ajoute '!' car on veut son contraire
+    // ainsi, si la tache n'est pas checkée et qu'on clique dessus... on va la checker / si deja checkée, on veut la dé-checkée
+    setTasks(newTasks); // mise à jour du state
+  };
+
+  // Permet d'ajouter une nouvelle tache
+  const submittedTaskHandler = (event) => {
+    event.preventDefault();
+    // console.log(event);
+    // permet d'empecher l'envoi du formulaire
+    // ça bloque l'event par défaut qui permet d'envoyer le formulaire en cliquant sur la touche 'entrée'
+
+    const newTask = {
+      content: input,
+      done: false,
+    };
+    setTasks([...tasks, newTask]); // on récupère toutes les taches + la nouvelle
+    setInput(''); // permet de vider l'input pour pas que ce qu'on a tapé dedans reste affiché
+  };
+
+  const changedFormHandler = (event) => {
+    setInput(event.target.value); // récupère le contenu de l'input
+  };
+
+  // Variables
+  // Taches affichées
+  let tasksDisplayed = tasks.map((task, index) => {
+    return (
+      <Task
+        done={task.done} // pour savoir si la tache est réalisée ou non
+        content={task.content}
+        key={index}
+        removeClicked={() => removeClickedHandler(index)}
+        doneClicked={() => doneClickedHandler(index)}
+      />
+    );
+  });
+
+  return (
+    <VStack p={4}>
+      <Heading
+        color='black'
+        textAlign='center'
+        mb='1'
+        mt='4'
+        fontWeight='bold'
+        size='lg'
+        bgGradient='linear(to-r, blue.600, blue.500, blue.600)'
+        bgClip='text'
+      >
+        To-do list :
+      </Heading>
+
+      <form onSubmit={(e) => submittedTaskHandler(e)}>
+        <HStack mt='8'>
+          <Input
+            type='text'
+            variant='filled'
+            color='white'
+            px='1'
+            value={input}
+            onChange={(e) => changedFormHandler(e)}
+            placeholder='Ajouter un rappel...'
+          />
+          <Button colorScheme='blue' px='3' type='submit'>
+            Ajouter
+          </Button>
+        </HStack>
+      </form>
+
+      {tasksDisplayed}
+    </VStack>
+  );
+}
+export default ReminderTask;
+
+// onSubmit permet de détecter l'envoi du formulaire
