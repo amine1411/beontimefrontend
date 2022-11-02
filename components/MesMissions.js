@@ -94,6 +94,7 @@ function MesMissions(props) {
       return (
         <CardMission
           key={index}
+          idMission={mission.idMission}
           libelle={mission.libelle}
           entreprise={mission.entreprise}
           progression={mission.progression}

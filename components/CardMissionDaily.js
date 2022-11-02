@@ -1,10 +1,11 @@
 import React from "react";
 import styles from "../styles/cardMission.module.css";
-import { Progress } from "@chakra-ui/react";
+import { Progress, IconButton, HStack } from "@chakra-ui/react";
 import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
-import { addMissionToJourney } from "../reducers/mission";
+import { removeMission } from "../reducers/mission";
 import Modal from 'react-modal';
+import { ViewOffIcon, TimeIcon } from "@chakra-ui/icons";
 
 
 // Styled Component
@@ -115,16 +116,24 @@ function CardMissionDaily(mission) {
 
   //JSX
   return (
-    <Carte >
-        <div>Sablier<Modal/></div>
-        <div> <button onClick={() => handleDeleteMission()}> 
-        x</button>
-        
-       </div>
+    <Carte>
+      <IconButton
+        size="lg"
+        colorScheme="teal"
+        variant="ghost"
+        icon={<ViewOffIcon />}
+        onClick={() => dispatch(removeMission(mission))}
+      />
+      <IconButton
+        size="lg"
+        colorScheme="teal"
+        variant="ghost"
+        icon={<TimeIcon />}
+      />
       <FirstDiv>
         <Libelle className="libellé">{mission.libelle}</Libelle>
         <Echeance background={EcheanceBackground} border={EcheanceBorder}>
-          {" "}
+         
           <NbJours className={nbDeJour.join(" ")}>{mission.nbjour}</NbJours>
         </Echeance>
       </FirstDiv>

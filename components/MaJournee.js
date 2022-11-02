@@ -93,6 +93,7 @@ function MaJournee(mission) {
         <CardMissionDaily
           onClick={() => dispatch(removeMission(missions))}
           key={index}
+          idMission={mission.idMission}
           libelle={mission.libelle}
           entreprise={mission.entreprise}
           progression={mission.progression}
