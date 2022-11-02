@@ -1,23 +1,24 @@
 // Librairies
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Input } from '@chakra-ui/react';
 // Component
 import CardMission from '../components/CardMission';
 
-function MesMissions(props) {
+function MesMissions() {
   //redux
   const user = useSelector((state) => state.user.value);
   // console.log(user.username, "USERS");
-  const missionReduce = useSelector((state) => state.mission);
+
   // State
   const [DisplayedData, setDisplayedData] = useState([]);
   const [AllMissions, setAllMissions] = useState([]);
-  console.log(DisplayedData, 'DISPLAYED');
+  // console.log(DisplayedData, 'DISPLAYED');
 
   // UseEffects
   useEffect(() => {
     //Anciennement 'http://localhost:3000/missions/all' si on veut récupérer toutes les missions (pour les filtrer ensuite)
+    //Permet de fetch pour ensuite afficher les missions uniquement en ciblant le username du collaborateur (par exemple C02 si on est connecté sur la session)
     fetch(`http://localhost:3000/missions/collab/${user.username}`)
       .then((res) => {
         return res.json();
@@ -30,11 +31,12 @@ function MesMissions(props) {
       });
   }, []);
 
-  //Je filtre les missions en fonction de la valeur de mon input, si l'input est vide (!value), je lui donne la valeur
-  //de mon state avec les missions au complet
+  //Je prend la valeur de mon input
   const filterMissions = (event) => {
     const value = event.target.value.toLowerCase();
     // console.log(value);
+
+    //Je filtre en fonction du type ou de l'entreprise ou du libellé
     const FilterM = AllMissions.filter(
       (data) =>
         data.type.toLowerCase().includes(value) ||

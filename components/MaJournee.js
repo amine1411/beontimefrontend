@@ -1,13 +1,13 @@
 // Librairies
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 // Component
 import CardMissionDaily from '../components/CardMissionDaily';
 
 function MaJournee() {
   // Redux
-  const dispatch = useDispatch();
+  //Je vais chercher le state de mon reducer mission pour utiliser mes objets cartes, je les stocke dans missionReduce
   const missionReduce = useSelector((state) => state.mission.value);
   console.log(missionReduce, 'REDUCER MISSIONS');
   //  console.log(missionReduce, "reducer")
@@ -24,8 +24,6 @@ function MaJournee() {
       .then((data) => {
         // console.log(data);
         setMissionsData(data.missions);
-        const createdMissions = { ...data.missions };
-        // console.log(createdMissions, "Created");
       });
   }, []);
 
@@ -46,17 +44,15 @@ function MaJournee() {
     fontSize: '30px',
   };
 
-  // Map sur les missions
+  // Map sur les missions dans le reducer
   let missions = [];
   if (missions) {
     // console.log(mission.echeance);
     missions = missionReduce.map((mission, index) => {
       // console.log(missionReduce[index].libelle, "OKOK");
 
-      // if (mission.find((data) => data === entreprise)) {
       return (
         <CardMissionDaily
-          onClick={() => dispatch(removeMission(missions))}
           key={index}
           idMission={mission.idMission}
           libelle={mission.libelle}
@@ -65,7 +61,6 @@ function MaJournee() {
           nbjour={mission.nbjour}
         />
       );
-      //  }
     });
   }
 

@@ -84,7 +84,7 @@ function CardMissionDaily(mission) {
     nbDeJour.push(styles.red);
     EcheanceBackground = "#f7dade";
     EcheanceBorder = "#d3455b";
-  } else if (mission.nbjour <= 5) {
+  } else if (mission.nbjour <= 7) {
     nbDeJour.push(styles.orange);
     EcheanceBackground = "#fef3d4";
     EcheanceBorder = "#f7c325";
@@ -95,6 +95,7 @@ function CardMissionDaily(mission) {
   }
 
   //JSX
+  //Je prends la fonction removeMission depuis le reducer pour enlevé une mission de daily.
   return (
     <Carte>
       <IconButton

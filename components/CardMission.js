@@ -2,7 +2,7 @@ import React from 'react';
 import styles from '../styles/cardMission.module.css';
 import { Progress } from '@chakra-ui/react';
 import styled from 'styled-components';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addMissionToJourney } from '../reducers/mission';
 
 // Styled Component
@@ -69,7 +69,6 @@ const BarProgress = styled.div`
 function CardMission(mission) {
   //Redux
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user.value);
   // Variable : changement de couleur en fonction des jours restants pour réaliser la mission
   const nbDeJour = [];
   let EcheanceBackground;
@@ -83,7 +82,7 @@ function CardMission(mission) {
     nbDeJour.push(styles.red);
     EcheanceBackground = '#f7dade';
     EcheanceBorder = '#d3455b';
-  } else if (mission.nbjour <= 5) {
+  } else if (mission.nbjour <= 7) {
     nbDeJour.push(styles.orange);
     EcheanceBackground = '#fef3d4';
     EcheanceBorder = '#f7c325';
@@ -95,6 +94,7 @@ function CardMission(mission) {
 
 
   //JSX
+  //Je prend la fonction addMissionToJourney depuis le reducer mission afin d'ajouté une mission cliquée dans le state du reducer
   return (
     <Carte onClick={() => dispatch(addMissionToJourney(mission))}>
       <FirstDiv>
