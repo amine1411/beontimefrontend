@@ -103,8 +103,8 @@ function Login2() {
               <Button
                 mb={6}
                 size='lg'
-                bgGradient='linear(to-r, blue.600, teal.500, teal.600, blue.700)'
-                color='black'
+                bgGradient='linear(to-r, blue.600, blue.400, blue.400, blue.600)'
+                color='blue.900'
                 onClick={() => handleSubmit()}
                 mt={-2}
               >
