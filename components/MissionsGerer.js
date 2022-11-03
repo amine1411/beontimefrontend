@@ -2,8 +2,8 @@
 // MODIFY MISSION
 // Va créer une mission
 //-----------------------------------------
-import CreateMission from '../components/MissionCreate';
-import ModifyMission from '../components/MissionModify';
+import CreateMission from "../components/MissionCreate";
+import ModifyMission from "../components/MissionModify";
 import Mission from "../components/MissionCard";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -49,7 +49,11 @@ function GererMissions() {
       console.log("Client est =>", client);
       axios.get("http://localhost:3000/missions/all").then((res) => {
         console.log("Data received =>", res.data);
-        setMissionsData(res.data.missions);
+        let sortedmissions = res.data.missions.sort((a, b) => {
+          return new Date(a.echeance) - new Date(b.echeance);
+        });
+
+        setMissionsData(sortedmissions);
       });
     }
 
@@ -242,7 +246,9 @@ function GererMissions() {
                   background="gray.100"
                   rounded={6}
                 >
-                  <Heading fontSize="l" color='black'>Nouvelle Mission</Heading>
+                  <Heading fontSize="l" color="black">
+                    Nouvelle Mission
+                  </Heading>
                   <HStack justifyContent="end">
                     <Button
                       colorScheme="teal"

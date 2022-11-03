@@ -129,7 +129,7 @@ function CreateMission(props) {
 
       // on fait le post
       axios
-        .post("http://localhost:3000/missions/create", JSON.stringify(body), {
+        .post("http://localhost:3000/missions", JSON.stringify(body), {
           headers: { "Content-Type": "application/json; charset=UTF-8" },
         })
         .then((res) => {
