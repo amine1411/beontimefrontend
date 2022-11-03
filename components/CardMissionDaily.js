@@ -1,11 +1,39 @@
 import React from "react";
 import styles from "../styles/cardMission.module.css";
 import styled from "styled-components";
-import { useDispatch, useSelector } from "react-redux";
+import axios from "axios";
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { removeMission } from "../reducers/mission";
 import { ViewOffIcon, TimeIcon } from "@chakra-ui/icons";
-import { Progress, IconButton } from "@chakra-ui/react";
-
+import {
+  Progress,
+  IconButton,
+  Button,
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalCloseButton,
+  ModalBody,
+  FormControl,
+  FormLabel,
+  FormHelperText,
+  ModalFooter,
+  useDisclosure,
+  Slider,
+  SliderTrack,
+  SliderFilledTrack,
+  SliderThumb,
+  SliderMark,
+  NumberInput,
+  NumberInputField,
+  NumberInputStepper,
+  NumberIncrementStepper,
+  NumberDecrementStepper,
+  Toast,
+  useToast,
+} from "@chakra-ui/react";
 
 // Styled Component
 const Carte = styled.div`
@@ -94,6 +122,71 @@ function CardMissionDaily(mission) {
     EcheanceBorder = "#1aae9f";
   }
 
+  //console.log("les props =>", mission);
+
+  // Gestion de la modale Debut ////////////////////////
+  // A reprendre et a mettre dans la carte CardMissionDaily
+  const { isOpen, onClose, onOpen } = useDisclosure();
+
+  // Les etats
+  const [idMission, setIdMission] = useState(mission.idMission);
+  const [progression, setProgression] = useState(mission.progression);
+  const [tempsRealise, setTempsRealise] = useState(mission.tempsRealise);
+
+  // Le Toast
+  const toast = useToast();
+
+  function handleSubmitProgression(event) {
+    event.preventDefault();
+    const today = new Date().toISOString().substring(0, 10);
+
+    // on va effectuer la modification de la mission
+    const body = {
+      tempsRealise: tempsRealise,
+      progression: progression,
+      accompli: today,
+    };
+    //console.log("Body du put =>", body);
+    // on fait le post
+    axios
+      .put(
+        `http://localhost:3000/missions/${idMission}`,
+        JSON.stringify(body),
+        {
+          headers: { "Content-Type": "application/json; charset=UTF-8" },
+        }
+      )
+      .then((res) => {
+        ////////////////
+        // Log du retour
+        //console.log("Data received back =>", res.data);
+
+        if (res.data.result) {
+          // API retourne result : tue - la mission a été supprimée
+          toast({
+            title: "Demande de Progression d'une Mission",
+            description: "Nous avons bien mis à jour la progression.",
+            status: "success",
+            duration: 3000,
+          });
+        } else {
+          // API retourne result : false - la mission n'a pas été supprimée
+          toast({
+            title: "Demande de Progression d'une Mission",
+            description: "Nous n'avons pas pu mettre à jour la progression.",
+            status: "error",
+            duration: 3000,
+          });
+        }
+      });
+
+    // on demande la fermeture de la modale
+    onClose();
+    // on retire la mission de la liste ma journée
+    dispatch(removeMission(mission));
+  }
+  // Gestion de la modale Fin ///////////////////////////
+
   //JSX
   //Je prends la fonction removeMission depuis le reducer pour enlevé une mission de daily.
   return (
@@ -110,11 +203,11 @@ function CardMissionDaily(mission) {
         colorScheme="teal"
         variant="ghost"
         icon={<TimeIcon />}
+        onClick={onOpen}
       />
       <FirstDiv>
         <Libelle className="libellé">{mission.libelle}</Libelle>
         <Echeance background={EcheanceBackground} border={EcheanceBorder}>
-         
           <NbJours className={nbDeJour.join(" ")}>{mission.nbjour}</NbJours>
         </Echeance>
       </FirstDiv>
@@ -122,6 +215,100 @@ function CardMissionDaily(mission) {
       <BarProgress>
         <Progress value={mission.progression} colorScheme="blue" />
       </BarProgress>
+
+      {/* Definition de la modale modale*/}
+      <Modal size="xl" isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>
+            <ModalCloseButton />
+          </ModalHeader>
+
+          <ModalBody>
+            <form
+              id="new-progression"
+              onSubmit={(event) => handleSubmitProgression(event)}
+            >
+              {/* Temps Passé DEBUT */}
+              <FormControl>
+                <FormLabel>Temps passé sur la mission</FormLabel>
+                <NumberInput
+                  onChange={(value) => setTempsRealise(value)}
+                  value={tempsRealise}
+                  defaultValue={1}
+                  max={200}
+                  min={1}
+                  inputMode="numeric"
+                  keepWithinRange={true}
+                >
+                  <NumberInputField />
+                  <NumberInputStepper>
+                    <NumberIncrementStepper />
+                    <NumberDecrementStepper />
+                  </NumberInputStepper>
+                </NumberInput>
+                <FormHelperText pt={2}>
+                  Saisir le temps passé en heure
+                </FormHelperText>
+              </FormControl>
+              {/* Temps Passé FIN */}
+
+              {/* Progression DEBUT */}
+              <FormControl>
+                <FormLabel pt={5} pb={5}>
+                  Progression de la mission
+                </FormLabel>
+                <Slider
+                  min={0}
+                  max={100}
+                  defaultValue={progression}
+                  onChange={(val) => setProgression(val)}
+                >
+                  <SliderMark value={25} mt="1" ml="-2.5" fontSize="sm">
+                    25%
+                  </SliderMark>
+                  <SliderMark value={50} mt="1" ml="-2.5" fontSize="sm">
+                    50%
+                  </SliderMark>
+                  <SliderMark value={75} mt="1" ml="-2.5" fontSize="sm">
+                    75%
+                  </SliderMark>
+                  <SliderMark
+                    value={progression}
+                    textAlign="center"
+                    bg="blue.500"
+                    color="white"
+                    mt="-10"
+                    ml="-5"
+                    w="12"
+                  >
+                    {progression}%
+                  </SliderMark>
+                  <SliderTrack>
+                    <SliderFilledTrack />
+                  </SliderTrack>
+                  <SliderThumb />
+                </Slider>
+                <FormHelperText pt={4}>
+                  Saisir le pourcentage de progression de la mission
+                </FormHelperText>
+              </FormControl>
+              {/* Progression FIN */}
+            </form>
+          </ModalBody>
+
+          <ModalFooter>
+            <Button
+              colorScheme="blue"
+              //variant="outline"
+              type="submit"
+              form="new-progression"
+            >
+              Enregistrer
+            </Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
     </Carte>
   );
 }

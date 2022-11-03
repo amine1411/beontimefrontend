@@ -1,9 +1,10 @@
 // Librairies
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Input } from '@chakra-ui/react';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Input, HStack, IconButton } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
 // Component
-import CardMission from '../components/CardMission';
+import CardMission from "./CardMission";
 
 function MesMissions() {
   //redux
@@ -17,7 +18,6 @@ function MesMissions() {
 
   // UseEffects
   useEffect(() => {
-    //Anciennement 'http://localhost:3000/missions/all' si on veut récupérer toutes les missions (pour les filtrer ensuite)
     //Permet de fetch pour ensuite afficher les missions uniquement en ciblant le username du collaborateur (par exemple C02 si on est connecté sur la session)
     fetch(`http://localhost:3000/missions/collab/${user.username}`)
       .then((res) => {
@@ -27,9 +27,9 @@ function MesMissions() {
         // console.log(data);
         setDisplayedData(data.missions);
         setAllMissions(data.missions);
-        const createdMissions = { ...data.missions };
+        //const createdMissions = { ...data.missions };
       });
-  }, []);
+  }, [DisplayedData]);
 
   //Je prend la valeur de mon input
   const filterMissions = (event) => {
@@ -46,7 +46,7 @@ function MesMissions() {
       // console.log(data, "Ok"),
       // console.log(value.length)
     );
-    console.log(DisplayedData, 'DisplayedData');
+    //console.log(DisplayedData, "DisplayedData");
     if (!value) {
       setDisplayedData(AllMissions);
     } else {
@@ -72,12 +72,14 @@ function MesMissions() {
   }
   // Variable CSS
   const h1Style = {
-    color: 'darkblue',
-    paddingLeft: '30px',
-    paddingTop: '20px',
-    fontSize: '30px',
+    color: "darkblue",
+    paddingLeft: "30px",
+    paddingTop: "20px",
+    fontSize: "30px",
   };
   // Map sur les missions
+  //console.log("DisplayedDate =>", DisplayedData);
+
   const missions = DisplayedData.map((mission, index) => {
     // Si la progression est différente de 100, alors on génère la carte, sinon elle est automatiquement retirée de l'écran
     if (mission.progression !== 100) {
@@ -88,6 +90,7 @@ function MesMissions() {
           libelle={mission.libelle}
           entreprise={mission.entreprise}
           progression={mission.progression}
+          tempsRealise={mission.tempsRealise}
           nbjour={datediff(DayDate, new Date(mission.echeance))}
         />
       );
@@ -96,17 +99,27 @@ function MesMissions() {
 
   // JSX
   return (
-    <div className='Ma journée'>
+    <div className="Ma journée">
       <h1 style={h1Style}>
         <b>Mes Missions </b>
-        <Input
-          size='md'
-          mt='4vh'
-          mb='4vh'
-          variant='filled'
-          onInput={filterMissions}
-          placeholder=' 🔍 Rechercher une mission...'
-        />
+        {/* Selection de la Mission -------------------------------------------
+        <HStack spacing="12px">
+          <IconButton
+            aria-label="Search database"
+            shadow="md"
+            icon={<SearchIcon />}
+          />
+          <Input
+            size="md"
+            mt="4vh"
+            mb="4vh"
+            variant="filled"
+            onInput={filterMissions}
+            placeholder="Rechercher une mission..."
+          />
+        </HStack>
+
+        Selection de la Mission ---------------------------------------- */}
       </h1>
       <div>{missions}</div>
     </div>

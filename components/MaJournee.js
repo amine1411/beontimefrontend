@@ -1,47 +1,23 @@
 // Librairies
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
 // Component
-import CardMissionDaily from '../components/CardMissionDaily';
+import CardMissionDaily from "./CardMissionDaily";
 
 function MaJournee() {
   // Redux
   //Je vais chercher le state de mon reducer mission pour utiliser mes objets cartes, je les stocke dans missionReduce
   const missionReduce = useSelector((state) => state.mission.value);
-  console.log(missionReduce, 'REDUCER MISSIONS');
-  //  console.log(missionReduce, "reducer")
-
-  // State
-  const [MissionsData, setMissionsData] = useState([]);
-
-  // UseEffects
-  useEffect(() => {
-    fetch('http://localhost:3000/missions/all')
-      .then((res) => {
-        return res.json();
-      })
-      .then((data) => {
-        // console.log(data);
-        setMissionsData(data.missions);
-      });
-  }, []);
-
-  //Trie des missions en fonction de l'échéance
-
-  MissionsData.sort(function compare(a, b) {
-    if (a.echeance < b.echeance) return -1;
-    if (a.echeance > b.echeance) return 1;
-    return 0;
-  });
+  //console.log(missionReduce, "REDUCER MISSIONS");
 
   // Variable CSS
   const h1Style = {
-    marginBottom: '12vh',
-    color: 'darkblue',
-    paddingLeft: '30px',
-    paddingTop: '20px',
-    fontSize: '30px',
+    marginBottom: "12vh",
+    color: "darkblue",
+    paddingLeft: "30px",
+    paddingTop: "20px",
+    fontSize: "30px",
   };
 
   // Map sur les missions dans le reducer
@@ -59,6 +35,7 @@ function MaJournee() {
           entreprise={mission.entreprise}
           progression={mission.progression}
           nbjour={mission.nbjour}
+          tempsRealise={mission.tempsRealise}
         />
       );
     });
@@ -66,7 +43,7 @@ function MaJournee() {
 
   // JSX
   return (
-    <div className='Ma journée'>
+    <div className="Ma journée">
       <h1 style={h1Style}>
         <b>Ma journée </b>
       </h1>

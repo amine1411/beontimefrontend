@@ -70,7 +70,6 @@ const BarProgress = styled.div`
 `;
 
 function CardMissionDashboard(mission) {
-  
   // Variable : changement de couleur en fonction des jours restants pour réaliser la mission
   const nbDeJour = [];
   let EcheanceBackground;
@@ -98,13 +97,6 @@ function CardMissionDashboard(mission) {
   // console.log(mission, "MMMM")
   return (
     <Carte>
-      <IdCollab className="idCollab">{mission.idCollab}</IdCollab>
-      <IconButton
-        size="lg"
-        colorScheme="green"
-        variant="ghost"
-        icon={<TimeIcon />}
-      />
       <FirstDiv>
         <Libelle className="libellé">{mission.libelle}</Libelle>
         <Echeance background={EcheanceBackground} border={EcheanceBorder}>
