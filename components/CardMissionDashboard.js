@@ -33,7 +33,7 @@ const FirstDiv = styled.div`
 
 const Libelle = styled.div`
   color: darkblue;
-  font-size: 2vh;
+  font-size: 1.8vh;
   margin-top: 30px;
 `;
 
@@ -97,17 +97,24 @@ function CardMissionDashboard(mission) {
   // console.log(mission, "MMMM")
   return (
     <Carte>
+      <IdCollab className='idCollab'>{mission.idCollab}</IdCollab>
       <FirstDiv>
-        <IdCollab className="idCollab">{mission.idCollab}</IdCollab>
-        <Libelle className="libellé">{mission.libelle}</Libelle>
-        <Echeance background={EcheanceBackground} border={EcheanceBorder}>
-          {" "}
-          <NbJours className={nbDeJour.join(" ")}>{mission.nbjour}</NbJours>
+        <Libelle className='libellé'>{mission.libelle}</Libelle>
+        <Echeance
+          background={EcheanceBackground}
+          border={EcheanceBorder}
+        >
+          {' '}
+          <NbJours className={nbDeJour.join(' ')}>
+            {mission.nbjour}
+          </NbJours>
         </Echeance>
       </FirstDiv>
-      <Entreprise className="entreprise">{mission.entreprise}</Entreprise>
+      <Entreprise className='entreprise'>
+        {mission.entreprise}
+      </Entreprise>
       <BarProgress>
-        <Progress value={mission.progression} colorScheme="blue" />
+        <Progress value={mission.progression} colorScheme='blue' />
       </BarProgress>
     </Carte>
   );
