@@ -62,6 +62,19 @@ const FirstDiv = styled.div`
   justify-content: space-between;
 `;
 
+const SDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  
+`;
+
+const TDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 const Libelle = styled.div`
   color: darkblue;
   font-size: 2vh;
@@ -191,22 +204,23 @@ function CardMissionDaily(mission) {
   //Je prends la fonction removeMission depuis le reducer pour enlevé une mission de daily.
   return (
     <Carte>
-      <FirstDiv>
-        <IconButton
-          size='lg'
-          colorScheme='green'
-          variant='ghost'
-          icon={<ViewOffIcon />}
-          onClick={() => dispatch(removeMission(mission))}
-        />
-        <IconButton
-          size='lg'
-          colorScheme='teal'
-          variant='ghost'
-          icon={<TimeIcon />}
-          onClick={onOpen}
-        />
-        <Libelle className='libellé'>{mission.libelle}</Libelle>
+      <SDiv>
+        <TDiv>
+          <IconButton
+            size='lg'
+            colorScheme='green'
+            variant='ghost'
+            icon={<ViewOffIcon />}
+            onClick={() => dispatch(removeMission(mission))}
+          />
+          <IconButton
+            size='lg'
+            colorScheme='teal'
+            variant='ghost'
+            icon={<TimeIcon />}
+            onClick={onOpen}
+          />
+        </TDiv>
         <Echeance
           background={EcheanceBackground}
           border={EcheanceBorder}
@@ -215,10 +229,14 @@ function CardMissionDaily(mission) {
             {mission.nbjour}
           </NbJours>
         </Echeance>
+      </SDiv>
+      <FirstDiv>
+        <Libelle className='libellé'>{mission.libelle}</Libelle>
       </FirstDiv>
       <Entreprise className='entreprise'>
         {mission.entreprise}
       </Entreprise>
+
       <BarProgress>
         <Progress value={mission.progression} colorScheme='blue' />
       </BarProgress>
