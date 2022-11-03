@@ -24,7 +24,6 @@ import NavItem from '../components/NavItem';
 
 const Navbar = () => {
 
-  console.log(new Date(2019, 4, 25) - new Date(2019, 3, 25));
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.value);
 
@@ -118,19 +117,19 @@ const Navbar = () => {
       >
         <Divider display={navSize == 'small' ? 'none' : 'flex'} />
         <Flex mt={4} align='center' fontSize='lg'>
-          <Avatar size='sm' src='iconprofil.png' />
+          <Avatar size='sm' src={user.picture} />
           <Flex
             flexDir='column'
             ml={4}
             display={navSize == 'small' ? 'none' : 'flex'}
           >
-            <button onClick={() => handleLogout()}>Se déconnecter</button>
+            <button onClick={() => handleLogout()}>
+              Se déconnecter
+            </button>
           </Flex>
         </Flex>
       </Flex>
     </Flex>
-
- 
   );
 };
 

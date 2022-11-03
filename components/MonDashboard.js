@@ -1,12 +1,25 @@
 // Librairies
 import React, { useState, useEffect } from 'react';
 import styles from '../styles/MonDashboard.module.css';
-import { Input, Flex, Center, Heading } from '@chakra-ui/react';
+import {
+  Input,
+  Flex,
+  Center,
+  Heading,
+  HStack,
+  IconButton,
+  Box,
+} from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons';
+import { useSelector } from 'react-redux';
 
 // Component
 import CardMissionDashboard from '../components/CardMissionDashboard';
 
 function MonDashBoard(data) {
+
+  const user = useSelector((state) => state.user.value);
+
   // State
   const [DisplayedData, setDisplayedData] = useState([]);
   const [DisplayAdaptMissions, setDisplayAdaptMissions] = useState(
@@ -164,17 +177,25 @@ function MonDashBoard(data) {
           <Flex flexDirection='column' ml='10vh' mr='10vh' pt='4vh'>
             <Heading>
               <h1 className={styles.titre}>
-                <b>Hello ✌</b>
+                <b>Hello {user.prenom} ✌</b>
               </h1>
             </Heading>
             <Center>
-              <Input
-                size='md'
-                mt='5vh'
-                variant='filled'
-                onInput={filterMissions}
-                placeholder=' 🔍 Rechercher une mission...'
-              />
+              <Box w='90%' p={2} mt={6}>
+                <HStack spacing='12px'>
+                  <IconButton
+                    aria-label='Search database'
+                    shadow='md'
+                    icon={<SearchIcon />}
+                  />
+                  <Input
+                    size='md'
+                    variant='filled'
+                    onInput={filterMissions}
+                    placeholder='Rechercher une mission...'
+                  />
+                </HStack>
+              </Box>
             </Center>
           </Flex>
           <Flex ml='6vh' mr='6vh' justifyContent='center'>

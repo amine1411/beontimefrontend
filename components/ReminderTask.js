@@ -72,16 +72,16 @@ function ReminderTask() {
   return (
     <VStack p={4}>
       <Heading
-        color='black'
+        color='white'
         textAlign='center'
         mb='1'
         mt='4'
         fontWeight='bold'
         size='lg'
-        bgGradient='linear(to-r, blue.600, blue.500, blue.600)'
+        bgGradient='linear(to-r, blue.300, blue.200, blue.300)'
         bgClip='text'
       >
-        To-do list :
+        Reminder :
       </Heading>
 
       <form onSubmit={(e) => submittedTaskHandler(e)}>

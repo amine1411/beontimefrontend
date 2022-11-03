@@ -36,7 +36,10 @@ function Login2() {
           dispatch(
             login({
               token: data.token,
-              username: username,
+              username: data.username,
+              picture: data.picture,
+              prenom: data.prenom,
+              isManager: data.isManager,
             })
           );
         if (user.token) {
