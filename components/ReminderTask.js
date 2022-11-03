@@ -81,7 +81,7 @@ function ReminderTask() {
         bgGradient='linear(to-r, blue.300, blue.200, blue.300)'
         bgClip='text'
       >
-        Reminder :
+        Reminder
       </Heading>
 
       <form onSubmit={(e) => submittedTaskHandler(e)}>
