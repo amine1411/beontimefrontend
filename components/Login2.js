@@ -70,19 +70,22 @@ function Login2() {
           <Flex direction='column' p={14} rounded={6}>
             <Center>
               <Heading
-                bgGradient='linear(to-r, blue.700, blue.500, blue.700)'
+                bgGradient='linear(to-r, blue.700, teal.600, teal.700, blue.900)'
                 bgClip='text'
                 position='absolute'
+                mb={20}
+                fontSize={40}
               >
-                Connectez-vous à Watodo pour commencer votre journée
+                Connectez-vous à BeOnTime pour commencer votre journée
               </Heading>
             </Center>
             <Flex flexDirection='column'>
               <Input
                 placeholder='Username'
-                _placeholder={{ opacity: 1, color: 'blue.600' }}
+                _placeholder={{ opacity: 1, color: 'black' }}
                 variant='filled'
-                mt={40}
+                mt={38}
+                fontSize='large'
                 mb={6}
                 type='email'
                 onChange={(e) => setUsername(e.target.value)}
@@ -90,7 +93,7 @@ function Login2() {
               />
               <Input
                 placeholder='Password'
-                _placeholder={{ opacity: 1, color: 'blue.600' }}
+                _placeholder={{ opacity: 1, color: 'black' }}
                 variant='filled'
                 mb={14}
                 type='password'
@@ -100,13 +103,10 @@ function Login2() {
               <Button
                 mb={6}
                 size='lg'
-                colorScheme='telegram'
+                bgGradient='linear(to-r, blue.600, teal.500, teal.600, blue.700)'
+                color='black'
                 onClick={() => handleSubmit()}
                 mt={-2}
-                _focus={{
-                  boxShadow:
-                    '0 0 1px 2px rgba(88, 144, 255, .75), 0 1px 1px rgba(0, 0, 0, .15)',
-                }}
               >
                 Se connecter
               </Button>

@@ -1,9 +1,10 @@
 // Librairies
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Flex } from '@chakra-ui/react';
 
 // Component
-import CardMissionDaily from "./CardMissionDaily";
+import CardMissionDaily from './CardMissionDaily';
 
 function MaJournee() {
   // Redux
@@ -13,11 +14,11 @@ function MaJournee() {
 
   // Variable CSS
   const h1Style = {
-    marginBottom: "12vh",
-    color: "darkblue",
-    paddingLeft: "30px",
-    paddingTop: "20px",
-    fontSize: "30px",
+    marginBottom: '4vh',
+    color: 'darkblue',
+    // paddingLeft: '30px',
+    paddingTop: '20px',
+    fontSize: '30px',
   };
 
   // Map sur les missions dans le reducer
@@ -43,11 +44,18 @@ function MaJournee() {
 
   // JSX
   return (
-    <div className="Ma journée">
-      <h1 style={h1Style}>
-        <b>Ma journée </b>
-      </h1>
-      <div>{missions}</div>
+    <div className='Ma journée'>
+      <Flex
+        textAlign='center'
+        alignItems='center'
+        flexDirection='column'
+        m={0}
+      >
+        <h1 style={h1Style}>
+          <b>Ma journée </b>
+        </h1>
+        <div>{missions}</div>
+      </Flex>
     </div>
   );
 }

@@ -191,33 +191,40 @@ function CardMissionDaily(mission) {
   //Je prends la fonction removeMission depuis le reducer pour enlevé une mission de daily.
   return (
     <Carte>
-      <IconButton
-        size="lg"
-        colorScheme="green"
-        variant="ghost"
-        icon={<ViewOffIcon />}
-        onClick={() => dispatch(removeMission(mission))}
-      />
-      <IconButton
-        size="lg"
-        colorScheme="teal"
-        variant="ghost"
-        icon={<TimeIcon />}
-        onClick={onOpen}
-      />
       <FirstDiv>
-        <Libelle className="libellé">{mission.libelle}</Libelle>
-        <Echeance background={EcheanceBackground} border={EcheanceBorder}>
-          <NbJours className={nbDeJour.join(" ")}>{mission.nbjour}</NbJours>
+        <IconButton
+          size='lg'
+          colorScheme='green'
+          variant='ghost'
+          icon={<ViewOffIcon />}
+          onClick={() => dispatch(removeMission(mission))}
+        />
+        <IconButton
+          size='lg'
+          colorScheme='teal'
+          variant='ghost'
+          icon={<TimeIcon />}
+          onClick={onOpen}
+        />
+        <Libelle className='libellé'>{mission.libelle}</Libelle>
+        <Echeance
+          background={EcheanceBackground}
+          border={EcheanceBorder}
+        >
+          <NbJours className={nbDeJour.join(' ')}>
+            {mission.nbjour}
+          </NbJours>
         </Echeance>
       </FirstDiv>
-      <Entreprise className="entreprise">{mission.entreprise}</Entreprise>
+      <Entreprise className='entreprise'>
+        {mission.entreprise}
+      </Entreprise>
       <BarProgress>
-        <Progress value={mission.progression} colorScheme="blue" />
+        <Progress value={mission.progression} colorScheme='blue' />
       </BarProgress>
 
       {/* Definition de la modale modale*/}
-      <Modal size="xl" isOpen={isOpen} onClose={onClose}>
+      <Modal size='xl' isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>
@@ -226,7 +233,7 @@ function CardMissionDaily(mission) {
 
           <ModalBody>
             <form
-              id="new-progression"
+              id='new-progression'
               onSubmit={(event) => handleSubmitProgression(event)}
             >
               {/* Temps Passé DEBUT */}
@@ -238,7 +245,7 @@ function CardMissionDaily(mission) {
                   defaultValue={1}
                   max={200}
                   min={1}
-                  inputMode="numeric"
+                  inputMode='numeric'
                   keepWithinRange={true}
                 >
                   <NumberInputField />
@@ -264,23 +271,38 @@ function CardMissionDaily(mission) {
                   defaultValue={progression}
                   onChange={(val) => setProgression(val)}
                 >
-                  <SliderMark value={25} mt="1" ml="-2.5" fontSize="sm">
+                  <SliderMark
+                    value={25}
+                    mt='1'
+                    ml='-2.5'
+                    fontSize='sm'
+                  >
                     25%
                   </SliderMark>
-                  <SliderMark value={50} mt="1" ml="-2.5" fontSize="sm">
+                  <SliderMark
+                    value={50}
+                    mt='1'
+                    ml='-2.5'
+                    fontSize='sm'
+                  >
                     50%
                   </SliderMark>
-                  <SliderMark value={75} mt="1" ml="-2.5" fontSize="sm">
+                  <SliderMark
+                    value={75}
+                    mt='1'
+                    ml='-2.5'
+                    fontSize='sm'
+                  >
                     75%
                   </SliderMark>
                   <SliderMark
                     value={progression}
-                    textAlign="center"
-                    bg="blue.500"
-                    color="white"
-                    mt="-10"
-                    ml="-5"
-                    w="12"
+                    textAlign='center'
+                    bg='blue.500'
+                    color='white'
+                    mt='-10'
+                    ml='-5'
+                    w='12'
                   >
                     {progression}%
                   </SliderMark>
@@ -299,10 +321,10 @@ function CardMissionDaily(mission) {
 
           <ModalFooter>
             <Button
-              colorScheme="blue"
+              colorScheme='blue'
               //variant="outline"
-              type="submit"
-              form="new-progression"
+              type='submit'
+              form='new-progression'
             >
               Enregistrer
             </Button>

@@ -1,10 +1,11 @@
 // Librairies
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { Input, HStack, IconButton } from "@chakra-ui/react";
-import { SearchIcon } from "@chakra-ui/icons";
+import React, { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Input, HStack, IconButton } from '@chakra-ui/react';
+import { SearchIcon } from '@chakra-ui/icons';
+import { Flex } from '@chakra-ui/react';
 // Component
-import CardMission from "./CardMission";
+import CardMission from './CardMission';
 
 function MesMissions() {
   //redux
@@ -72,10 +73,11 @@ function MesMissions() {
   }
   // Variable CSS
   const h1Style = {
-    color: "darkblue",
-    paddingLeft: "30px",
-    paddingTop: "20px",
-    fontSize: "30px",
+    marginBottom: '4vh',
+    color: 'darkblue',
+    // paddingLeft: '30px',
+    paddingTop: '20px',
+    fontSize: '30px',
   };
   // Map sur les missions
   //console.log("DisplayedDate =>", DisplayedData);
@@ -99,10 +101,15 @@ function MesMissions() {
 
   // JSX
   return (
-    <div className="Ma journée">
-      <h1 style={h1Style}>
-        <b>Mes Missions </b>
-        {/* Selection de la Mission -------------------------------------------
+    <div className='Ma journée'>
+      <Flex
+        textAlign='center'
+        alignItems='center'
+        flexDirection='column'
+      >
+        <h1 style={h1Style}>
+          <b>Mes Missions </b>
+          {/* Selection de la Mission -------------------------------------------
         <HStack spacing="12px">
           <IconButton
             aria-label="Search database"
@@ -120,8 +127,9 @@ function MesMissions() {
         </HStack>
 
         Selection de la Mission ---------------------------------------- */}
-      </h1>
-      <div>{missions}</div>
+        </h1>
+        <div>{missions}</div>
+      </Flex>
     </div>
   );
 }
