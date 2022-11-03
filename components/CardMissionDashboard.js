@@ -98,6 +98,7 @@ function CardMissionDashboard(mission) {
   return (
     <Carte>
       <FirstDiv>
+        <IdCollab className="idCollab">{mission.idCollab}</IdCollab>
         <Libelle className="libellé">{mission.libelle}</Libelle>
         <Echeance background={EcheanceBackground} border={EcheanceBorder}>
           {" "}
