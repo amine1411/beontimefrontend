@@ -1,11 +1,11 @@
 // Librairies
-import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Input, HStack, IconButton } from '@chakra-ui/react';
-import { SearchIcon } from '@chakra-ui/icons';
-import { Flex } from '@chakra-ui/react';
+import React, { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
+import { Input, HStack, IconButton } from "@chakra-ui/react";
+import { SearchIcon } from "@chakra-ui/icons";
+import { Flex } from "@chakra-ui/react";
 // Component
-import CardMission from './CardMission';
+import CardMission from "./CardMission";
 
 function MesMissions() {
   //redux
@@ -30,7 +30,7 @@ function MesMissions() {
         setAllMissions(data.missions);
         //const createdMissions = { ...data.missions };
       });
-  }, [DisplayedData]);
+  }, []);
 
   //Je prend la valeur de mon input
   const filterMissions = (event) => {
@@ -65,19 +65,19 @@ function MesMissions() {
 
   //Trie des missions en fonction de l'échéance
   if (user.token) {
-    DisplayedData.sort(function compare(a, b) {
+    /* DisplayedData.sort(function compare(a, b) {
       if (a.echeance < b.echeance) return -1;
       if (a.echeance > b.echeance) return 1;
       return 0;
-    });
+    }); */
   }
   // Variable CSS
   const h1Style = {
-    marginBottom: '4vh',
-    color: 'darkblue',
+    marginBottom: "4vh",
+    color: "darkblue",
     // paddingLeft: '30px',
-    paddingTop: '20px',
-    fontSize: '30px',
+    paddingTop: "20px",
+    fontSize: "30px",
   };
   // Map sur les missions
   //console.log("DisplayedDate =>", DisplayedData);
@@ -101,12 +101,8 @@ function MesMissions() {
 
   // JSX
   return (
-    <div className='Ma journée'>
-      <Flex
-        textAlign='center'
-        alignItems='center'
-        flexDirection='column'
-      >
+    <div className="Ma journée">
+      <Flex textAlign="center" alignItems="center" flexDirection="column">
         <h1 style={h1Style}>
           <b>Mes Missions </b>
           {/* Selection de la Mission -------------------------------------------

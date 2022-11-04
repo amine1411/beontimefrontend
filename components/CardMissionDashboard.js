@@ -97,24 +97,17 @@ function CardMissionDashboard(mission) {
   // console.log(mission, "MMMM")
   return (
     <Carte>
-      <IdCollab className='idCollab'>{mission.idCollab}</IdCollab>
+      <IdCollab className="idCollab">{mission.idCollab}</IdCollab>
       <FirstDiv>
-        <Libelle className='libellé'>{mission.libelle}</Libelle>
-        <Echeance
-          background={EcheanceBackground}
-          border={EcheanceBorder}
-        >
-          {' '}
-          <NbJours className={nbDeJour.join(' ')}>
-            {mission.nbjour}
-          </NbJours>
+        <Libelle className="libellé">{mission.libelle}</Libelle>
+        <Echeance background={EcheanceBackground} border={EcheanceBorder}>
+          {" "}
+          <NbJours className={nbDeJour.join(" ")}>{mission.nbjour}</NbJours>
         </Echeance>
       </FirstDiv>
-      <Entreprise className='entreprise'>
-        {mission.entreprise}
-      </Entreprise>
+      <Entreprise className="entreprise">{mission.entreprise}</Entreprise>
       <BarProgress>
-        <Progress value={mission.progression} colorScheme='blue' />
+        <Progress value={mission.progression} colorScheme="blue" />
       </BarProgress>
     </Carte>
   );
