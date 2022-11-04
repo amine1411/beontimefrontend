@@ -40,15 +40,22 @@ function ReminderTask() {
   const submittedTaskHandler = (event) => {
     event.preventDefault();
     // console.log(event);
-    // permet d'empecher l'envoi du formulaire
+    // permet d'empecher l'envoi du formulaire (annule le click natif)
     // ça bloque l'event par défaut qui permet d'envoyer le formulaire en cliquant sur la touche 'entrée'
 
-    const newTask = {
-      content: input,
-      done: false,
-    };
-    setTasks([...tasks, newTask]); // on récupère toutes les taches + la nouvelle
-    setInput(''); // permet de vider l'input pour pas que ce qu'on a tapé dedans reste affiché
+    // check sur la valeur de l'input
+
+    if (input.length > 0) {
+      // ajouter la tache
+      const newTask = {
+        content: input,
+        done: false,
+      };
+      setTasks([...tasks, newTask]); // on récupère toutes les taches + la nouvelle
+      setInput(''); // permet de vider l'input pour pas que ce qu'on a tapé dedans reste affiché
+    }
+
+    
   };
 
   const changedFormHandler = (event) => {
